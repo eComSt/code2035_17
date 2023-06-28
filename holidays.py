@@ -63,7 +63,7 @@ def get_anekdot():
 def printw(f):
     txt.insert(1.0,f())
 
-printw(get_weather)
+printw(get_data)
 
 while True:
     root.update()
