@@ -22,3 +22,11 @@ h1 {
     font-size: 22px;
     font-family: Courier New;
 }
+
+.paragraph-4 {
+    text-align: center;
+    font-size: 24px;
+    text-shadow: 2px 2px green;
+    font-style: italic;
+    font-family: Courier New;
+}
