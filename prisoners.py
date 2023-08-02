@@ -18,6 +18,27 @@ class Copycat(player):
     def step(self):
         return True if not self.history else self.history[-1]
 
+class Detective(player):
+    def step(self):
+        ans= [True,False,True,True]
+        if len(self.history)<4: 
+            return ans[len(self.history)]
+        else:
+            return False if all(self.history[:4]) else self.history[-1]
+
+class Mirror(player):
+    def __init__(self,model):
+        super().__init__(model)
+        self.matches = 0 # счетчик матчей
+    def step(self):
+        #self.matches += 1 # можно раскомментить и закомментить счётчик вконце, чтобы посмотреть на другой результат 
+        if not self.history: return True
+        elif self.history[-1]==True and self.matches%2==0: return False
+        elif self.history[-1]==True and self.matches%2!=0: return True
+        elif self.history[-1]==False and self.matches%2==0: return True
+        elif self.history[-1]==False and self.matches%2!=0: return False
+        self.matches += 1
+
 
 class Game(object):
 
@@ -40,8 +61,8 @@ class Game(object):
             player2.history.append(ans1)
             player1.history.append(ans2)
 
-p1 =Cheater("Cheater")
-p2 = Cooperator("Cooperator")
-g = Game()
+p1 =Mirror("Mirror")
+p2 = Detective("Detective")
+g = Game(matches=10)
 g.play(p1,p2)
 print(g.registry)
