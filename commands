@@ -1,0 +1,6 @@
+python3 manage.py createsuperuser
+    username:
+    email:(не обязательно)
+    password:
+    again:
+python3 manage.py runserver
