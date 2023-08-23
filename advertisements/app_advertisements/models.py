@@ -28,6 +28,10 @@ class Advertisements(models.Model):
             created_time = self.updated_at.time().strftime("%H:%M:%S")
             return format_html('<span style="color: red; font-weight: bold;">Сегодня в {}</span>', created_time)
         return self.created_at.strftime("%d.%m.%Y в %H:%M:%S")
+    @admin.display(description="Фото")
+    def updated_date(self):
+        if self.image: 
+            return format_html('<img src="{url}" style = "max-width: 80px; max-height: 80px;">', url = self.image.url)
     def __str__(self):
         return f"Advertisements:(id={self.id}, title={self.title}, price={self.price})"
     class Meta:
